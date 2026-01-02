@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forget Password - SKY BET</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Poppins:wght@500&display=swap" rel="forgetpas">
+    <link rel="stylesheet" href="forgetpas.css">
+</head>
+<body>
+    <div class="account-container">
+        <!-- Animated Title -->
+        <h1 class="account-title">SKY BET</h1>
+
+        <!-- Forget Password Form -->
+        <div class="account-info">
+            <p class="account-item">Forget Password</p>
+            <div class="form-group">
+                <label for="new-password" class="account-item">New Password:</label>
+                <input type="password" id="new-password" class="password-input" placeholder="Enter new password" required>
+            </div>
+            <div class="form-group">
+                <label for="confirm-password" class="account-item">Confirm New Password:</label>
+                <input type="password" id="confirm-password" class="password-input" placeholder="Confirm new password" required>
+            </div>
+        </div>
+
+        <!-- Done Button -->
+        <button class="done-button" onclick="changePassword()">Done</button>
+
+        <!-- Success Alert (Hidden by Default) -->
+        <div id="success-alert" class="alert-box" style="display: none;">
+            <p>Your password changed successfully</p>
+            <button onclick="redirectToLogin()">OK</button>
+        </div>
+    </div>
+
+    <script>
+        // Function to handle password change
+        function changePassword() {
+            const newPassword = document.getElementById('new-password').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
+
+            if (!newPassword || !confirmPassword) {
+                alert('Please fill in all fields!');
+                return;
+            }
+
+            if (newPassword !== confirmPassword) {
+                alert('Passwords do not match!');
+                return;
+            }
+
+            // Update password in localStorage
+            const storedUserData = localStorage.getItem('userData');
+            if (storedUserData) {
+                const userData = JSON.parse(storedUserData);
+                userData.password = newPassword;
+                localStorage.setItem('userData', JSON.stringify(userData));
+            }
+
+            // Show success alert
+            document.getElementById('success-alert').style.display = 'block';
+        }
+
+        // Redirect to login page after success
+        function redirectToLogin() {
+            window.location.href = 'signin.html';
+        }
+    </script>
+</body>
+</html>

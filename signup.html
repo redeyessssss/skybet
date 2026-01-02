@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - SKY BET</title>
+    <link rel="stylesheet" href="signup.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="signup">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="signup">
+</head>
+<body>
+    <!-- SKY BET Title -->
+    <div class="container">
+        <h1 class="main-title">SKY BET</h1>
+    </div>
+
+    <!-- Sign-Up Form -->
+    <div class="signup-container">
+        <h2 class="form-title">Sign Up</h2>
+        <form class="signup-form" onsubmit="saveUserData(event)">
+            <!-- Email -->
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+            <!-- First Name -->
+            <label for="first-name">First Name</label>
+            <input type="text" id="first-name" name="first-name" placeholder="Enter your first name" required>
+
+            <!-- Last Name -->
+            <label for="last-name">Last Name</label>
+            <input type="text" id="last-name" name="last-name" placeholder="Enter your last name" required>
+
+            <!-- Contact Number -->
+            <label for="contact-number">Contact Number</label>
+            <div class="contact-wrapper">
+                <select id="country-code" name="country-code" required>
+                    <option value="+1">🇺🇸 +1</option>
+                    <option value="+44">🇬🇧 +44</option>
+                    <option value="+91">🇮🇳 +91</option>
+                    <option value="+880">🇧🇩 +880</option>
+                    <!-- Add more countries here -->
+                </select>
+                <input type="tel" id="contact-number" name="contact-number" placeholder="Enter your phone number" required>
+            </div>
+
+            <!-- Password -->
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" placeholder="Create a password" required>
+
+            <!-- Confirm Password -->
+            <label for="confirm-password">Confirm Password</label>
+            <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm your password" required>
+
+            <!-- Sign Up Button -->
+            <button type="submit" class="submit-btn">Sign Up</button>
+        </form>
+
+        <!-- Link to Sign In Page -->
+        <p class="signup-link">Already have an account? <a href="signin.html">Sign In</a></p>
+    </div>
+
+    <script>
+        // Function to save user data to localStorage
+        function saveUserData(event) {
+            event.preventDefault(); // Prevent form submission
+
+            // Get user input values
+            const email = document.getElementById('email').value;
+            const firstName = document.getElementById('first-name').value;
+            const lastName = document.getElementById('last-name').value;
+            const contactNumber = document.getElementById('contact-number').value;
+            const password = document.getElementById('password').value;
+
+            // Check if passwords match
+            const confirmPassword = document.getElementById('confirm-password').value;
+            if (password !== confirmPassword) {
+                alert("Passwords do not match.");
+                return;
+            }
+            // Create an object to store the user data
+            const userData = {
+                email: email,
+                firstName: firstName,
+                lastName: lastName,
+                contactNumber: contactNumber,
+                password: password,
+            };
+
+            // Save the user data to localStorage (store it as JSON)
+            localStorage.setItem('userData', JSON.stringify(userData));
+
+            // Redirect to Sign In page after successful signup
+            window.location.href = 'signin.html';
+        }
+    </script>
+</body>
+</html>

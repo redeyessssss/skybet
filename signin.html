@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In - SKY BET</title>
+    <link rel="stylesheet" href="signin.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="signin">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="signin">
+</head>
+<body>
+    <!-- SKY BET Title -->
+    <div class="container">
+        <h1 class="main-title">SKY BET</h1>
+    </div>
+
+    <!-- Sign-In Form -->
+    <div class="signin-container">
+        <h2 class="form-title">Sign In</h2>
+        <form class="signin-form" onsubmit="return validateLogin(event)">
+            <!-- Email -->
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+            <!-- Password -->
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" placeholder="Enter your password" required>
+
+            <!-- Sign In Button -->
+            <button type="submit" class="submit-btn">Sign In</button>
+        </form>
+        <div class="forget-password-link">
+            <a href="forgetpas.html">Forget Password?</a>
+        </div>
+
+        <!-- Sign-Up Link -->
+        <p class="signup-link">Don't have an account? <a href="signup.html">Sign Up</a></p>
+    </div>
+
+    <script>
+        // Function to validate login credentials
+        function validateLogin(event) {
+            event.preventDefault(); // Prevent form submission
+
+            // Get user input values
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            // Get stored user data from localStorage
+            const storedUserData = localStorage.getItem('userData');
+            if (storedUserData) {
+                const userData = JSON.parse(storedUserData);
+
+                // Check if email and password match
+                if (userData.email === email && userData.password === password) {
+                    window.location.href = 'website1.html'; // Redirect to main page if valid credentials
+                    return false;
+                }
+            }
+
+            // If credentials do not match
+            alert("Invalid credentials. Please try again.");
+            return false;
+        }
+    </script>
+</body>
+</html>

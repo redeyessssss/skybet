@@ -1,0 +1,125 @@
+/* General body styling */
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* Forget Password Link */
+.forget-password-link {
+    margin-top: 10px;
+    text-align: center;
+}
+
+.forget-password-link a {
+    color: #ffa500;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.forget-password-link a:hover {
+    color: #ff4500;
+}
+
+
+/* SKY BET Title Styling */
+.main-title {
+    margin: 20px 0 10px;
+    font-size: 4rem;
+    font-family: 'Orbitron', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    color: #ffffff;
+    text-shadow: 0 0 10px #00ffff, 0 0 20px #00ccff;
+}
+
+/* Sign-In Form Container */
+.signin-container {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 30px 20px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    margin-top: 20px;
+}
+
+/* Form Title */
+.form-title {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #ffcc00;
+    text-shadow: 0 0 10px #ffaa00, 0 0 20px #ffee00;
+}
+
+/* Form Labels and Inputs */
+.signin-form label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 1rem;
+    color: #ffffff;
+}
+
+.signin-form input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    background: rgba(255, 255, 255, 0.9);
+    color: #333333;
+}
+
+.signin-form input:focus {
+    outline: none;
+    box-shadow: 0 0 5px #00ccff;
+}
+
+/* Sign-In Button */
+.submit-btn {
+    background: #00ccff;
+    color: #ffffff;
+    border: none;
+    padding: 12px;
+    border-radius: 5px;
+    font-size: 1rem;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+}
+
+.submit-btn:hover {
+    background: #0099cc;
+    transform: scale(1.05);
+}
+
+/* Sign-Up Link */
+.signup-link {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.signup-link a {
+    color: #00ccff;
+    text-decoration: none;
+}
+
+.signup-link a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .signin-container {
+        width: 90%;
+    }
+}

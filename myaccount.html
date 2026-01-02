@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Account - SKY BET</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Poppins:wght@500&display=swap" rel="myaccount">
+    <link rel="stylesheet" href="myaccount.css">
+</head>
+<body>
+    <div class="account-container">
+        <!-- Animated Title -->
+        <h1 class="account-title">SKY BET</h1>
+
+        <!-- Account Information -->
+        <div class="account-info">
+            <p class="account-item" id="user-id">ID: John Doe</p> <!-- Dynamic ID -->
+            <p class="account-item" id="main-balance">Balance: $0.00</p> <!-- Dynamic Balance -->
+            <p class="account-item" id="user-email">Email: user@example.com</p> <!-- Dynamic Email -->
+            <!-- Password Field -->
+            <div class="password-container">
+                <label for="user-password" class="account-item">Password:</label>
+                <div class="password-field">
+                    <input type="password" id="user-password" class="password-input" value="password123" readonly>
+                    <span class="toggle-password" onclick="togglePassword()">👁️</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Forget Password Link -->
+        <div class="forget-password">
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // Populate account data dynamically from localStorage
+        function populateAccountData() {
+            const storedUserData = localStorage.getItem('userData');
+            if (storedUserData) {
+                const userData = JSON.parse(storedUserData);
+                document.getElementById('user-id').textContent = `ID: ${userData.firstName} ${userData.lastName}`;
+                document.getElementById('user-email').textContent = `Email: ${userData.email}`;
+                document.getElementById('user-password').value = userData.password;
+            }
+
+            const storedBalance = localStorage.getItem('balance');
+            document.getElementById('main-balance').textContent = `Balance: $${storedBalance || '0.00'}`;
+        }
+
+        // Toggle password visibility
+        function togglePassword() {
+            const passwordInput = document.getElementById('user-password');
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+        }
+
+        // Initialize page data
+        populateAccountData();
+    </script>
+</body>
+</html>

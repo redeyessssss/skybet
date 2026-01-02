@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Account - SKY BET</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Poppins:wght@500&display=swap" rel="balance">
+    <link rel="stylesheet" href="balance.css">
+</head>
+<body>
+    <!-- Main Container -->
+    <div class="account-container">
+        <!-- Animated Title -->
+        <h1 class="account-title">SKY BET</h1>
+
+        <!-- Account Info Section -->
+        <div class="account-info">
+            <p class="account-item" id="user-id">ID: John Doe</p> <!-- Dynamically updated -->
+            <p class="account-item" id="main-balance">Main Balance: $1000.00</p> <!-- Placeholder -->
+        </div>
+
+        <!-- Options Section -->
+        <div class="account-options">
+            <button class="account-btn" onclick="handleWithdraw()">Withdraw</button>
+            <button class="account-btn" onclick="handleDeposit()">Deposit</button>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // Function to dynamically update user info
+        function updateUserInfo() {
+            const storedUserData = localStorage.getItem('userData');
+            if (storedUserData) {
+                const userData = JSON.parse(storedUserData);
+                const userID = `${userData.firstName} ${userData.lastName}`;
+                document.getElementById('user-id').textContent = `ID: ${userID}`;
+            }
+        }
+
+        // Placeholder functions for Withdraw and Deposit
+        function handleWithdraw() {
+            alert('Withdraw option selected. Implement functionality here!');
+        }
+
+        function handleDeposit() {
+            alert('Deposit option selected. Implement functionality here!');
+        }
+
+        // Initialize the page
+        updateUserInfo();
+    </script>
+</body>
+</html>

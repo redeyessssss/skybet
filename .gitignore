@@ -1,0 +1,13 @@
+# Dependencies
+node_modules/
+skybet-nextjs/node_modules/
+skybet-nextjs/.next/
+
+# OS files
+.DS_Store
+
+# IDE
+.vscode/
+
+# Build outputs
+*.log

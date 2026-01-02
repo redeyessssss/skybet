@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings - SKY BET</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Poppins:wght@500&display=swap" rel="setting">
+    <link rel="stylesheet" href="setting.css">
+</head>
+<body>
+    <div class="settings-container">
+        <!-- Animated Title -->
+        <h1 class="settings-title">SKY BET</h1>
+
+        <!-- Settings Form -->
+        <div class="settings-info">
+            <!-- Name Section -->
+            <div class="settings-item">
+                <p><strong>Name:</strong> <span id="user-name">Loading...</span> <button class="edit-button" onclick="editName()">Edit</button></p>
+                <div id="name-edit" class="edit-section" style="display: none;">
+                    <input type="text" id="new-first-name" placeholder="Enter new first name" required>
+                    <input type="text" id="new-last-name" placeholder="Enter new last name" required>
+                    <button class="save-button" onclick="saveName()">Save</button>
+                </div>
+            </div>
+
+            <!-- Email Section -->
+            <div class="settings-item">
+                <p><strong>Email:</strong> <span id="user-email">Loading...</span> <button class="edit-button" onclick="editEmail()">Edit</button></p>
+                <div id="email-edit" class="edit-section" style="display: none;">
+                    <input type="email" id="new-email" placeholder="Enter new email" required>
+                    <button class="save-button" onclick="saveEmail()">Save</button>
+                </div>
+            </div>
+
+            <!-- Contact Number Section -->
+            <div class="settings-item">
+                <p><strong>Contact Number:</strong> <span id="user-contact-number">Loading...</span> <button class="edit-button" onclick="editContactNumber()">Edit</button></p>
+                <div id="contact-edit" class="edit-section" style="display: none;">
+                    <input type="text" id="new-contact-number" placeholder="Enter new contact number" required>
+                    <button class="save-button" onclick="saveContactNumber()">Save</button>
+                </div>
+            </div>
+
+            <!-- Password Section -->
+            <div class="settings-item">
+                <p><strong>Password:</strong> <span>**********</span> <button class="edit-button" onclick="editPassword()">Edit</button></p>
+                <div id="password-edit" class="edit-section" style="display: none;">
+                    <input type="password" id="old-password" placeholder="Enter old password" required>
+                    <input type="password" id="new-password" placeholder="Enter new password" required>
+                    <input type="password" id="confirm-password" placeholder="Confirm new password" required>
+                    <button class="save-button" onclick="savePassword()">Save</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Success Alert (Hidden by Default) -->
+        <div id="success-alert" class="alert-box" style="display: none;">
+            <p>Changes saved successfully!</p>
+            <button onclick="redirectToAccount()">OK</button>
+        </div>
+    </div>
+
+    <script>
+        // Function to load the user data
+        function loadSettings() {
+            const storedUserData = localStorage.getItem('userData');
+            if (storedUserData) {
+                const userData = JSON.parse(storedUserData);
+                document.getElementById('user-name').textContent = `${userData.firstName} ${userData.lastName}`;
+                document.getElementById('user-email').textContent = userData.email;
+                document.getElementById('user-contact-number').textContent = userData.contactNumber || 'N/A';
+            }
+        }
+
+        // Call loadSettings on page load
+        window.onload = loadSettings;
+
+        // Edit Name
+        function editName() {
+            document.getElementById('name-edit').style.display = 'block';
+        }
+
+        // Save Name
+        function saveName() {
+            const firstName = document.getElementById('new-first-name').value;
+            const lastName = document.getElementById('new-last-name').value;
+
+            if (!firstName || !lastName) {
+                alert('Please fill in both fields!');
+                return;
+            }
+
+            const storedUserData = localStorage.getItem('userData');
+            if (storedUserData) {
+                const userData = JSON.parse(storedUserData);
+                userData.firstName = firstName;
+                userData.lastName = lastName;
+                localStorage.setItem('userData', JSON.stringify(userData));
+                loadSettings();
+                showAlert();
+            }
+        }
+
+        // Edit Email
+        function editEmail() {
+            document.getElementById('email-edit').style.display = 'block';
+        }
+
+        // Save Email
+        function saveEmail() {
+            const email = document.getElementById('new-email').value;
+
+            if (!email) {
+                alert('Please enter a new email!');
+                return;
+            }
+
+            const storedUserData = localStorage.getItem('userData');
+            if (storedUserData) {
+                const userData = JSON.parse(storedUserData);
+                userData.email = email;
+                localStorage.setItem('userData', JSON.stringify(userData));
+                loadSettings();
+                showAlert();
+            }
+        }
+
+        // Edit Contact Number
+        function editContactNumber() {
+            document.getElementById('contact-edit').style.display = 'block';
+        }
+
+        // Save Contact Number
+        function saveContactNumber() {
+            const contactNumber = document.getElementById('new-contact-number').value;
+
+            if (!contactNumber) {
+                alert('Please enter a new contact number!');
+                return;
+            }
+
+            const storedUserData = localStorage.getItem('userData');
+            if (storedUserData) {
+                const userData = JSON.parse(storedUserData);
+                userData.contactNumber = contactNumber;
+                localStorage.setItem('userData', JSON.stringify(userData));
+                loadSettings();
+                showAlert();
+            }
+        }
+
+        // Edit Password
+        function editPassword() {
+            document.getElementById('password-edit').style.display = 'block';
+        }
+
+        // Save Password
+        function savePassword() {
+            const oldPassword = document.getElementById('old-password').value;
+            const newPassword = document.getElementById('new-password').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
+
+            if (!oldPassword || !newPassword || !confirmPassword) {
+                alert('Please fill in all fields!');
+                return;
+            }
+
+            const storedUserData = localStorage.getItem('userData');
+            if (storedUserData) {
+                const userData = JSON.parse(storedUserData);
+                if (userData.password === oldPassword) {
+                    if (newPassword === confirmPassword) {
+                        userData.password = newPassword;
+                        localStorage.setItem('userData', JSON.stringify(userData));
+                        showAlert();
+                    } else {
+                        alert('New passwords do not match!');
+                    }
+                } else {
+                    alert('Old password is incorrect!');
+                }
+            }
+        }
+
+        // Show Success Alert
+        function showAlert() {
+            document.getElementById('success-alert').style.display = 'block';
+        }
+
+        // Redirect to Account Page
+        function redirectToAccount() {
+            window.location.href = 'website1.html';
+        }
+    </script>
+</body>
+</html>
